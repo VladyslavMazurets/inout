@@ -9,6 +9,20 @@
                 >
                     {{ $t("craftable-pro", "Media") }}
                 </SidebarItem>
+                <SidebarItem
+                    :href="route('craftable-pro.authors.index')"
+                    :icon="UserGroupIcon"
+                    v-can="'craftable-pro.author.index'"
+                >
+                    {{ $t("craftable-pro", "Authors") }}
+                </SidebarItem>
+                <SidebarItem
+                    :href="route('craftable-pro.posts.index')"
+                    :icon="QueueListIcon"
+                    v-can="'craftable-pro.post.index'"
+                >
+                    {{ $t("craftable-pro", "Posts") }}
+                </SidebarItem>
                 <!--AppendGeneratorLink-->
             </SidebarGroup>
 
@@ -61,7 +75,8 @@ import {
     PhotoIcon,
     UsersIcon,
     Cog8ToothIcon,
-    CubeTransparentIcon,
+    UserGroupIcon,
+    QueueListIcon,
 } from "@heroicons/vue/24/outline";
 import { SidebarItem, SidebarGroup } from "craftable-pro/Components";
 </script>
