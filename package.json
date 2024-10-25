@@ -3,9 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
-        "craftable-pro:dev": "vite --config craftable-pro.vite.config.js",
-        "craftable-pro:build": "vite build --config craftable-pro.vite.config.js"
+        "build": "vite build"
     },
     "devDependencies": {
         "@brackets/vue-toastification": "^2.0.2",

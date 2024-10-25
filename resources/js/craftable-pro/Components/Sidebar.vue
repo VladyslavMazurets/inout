@@ -23,6 +23,13 @@
                 >
                     {{ $t("craftable-pro", "Posts") }}
                 </SidebarItem>
+                <SidebarItem
+                    :href="route('craftable-pro.courses.index')"
+                    :icon="AcademicCapIcon"
+                    v-can="'craftable-pro.course.index'"
+                >
+                    {{ $t("craftable-pro", "Courses") }}
+                </SidebarItem>
                 <!--AppendGeneratorLink-->
             </SidebarGroup>
 
@@ -77,6 +84,7 @@ import {
     Cog8ToothIcon,
     UserGroupIcon,
     QueueListIcon,
+    AcademicCapIcon,
 } from "@heroicons/vue/24/outline";
 import { SidebarItem, SidebarGroup } from "craftable-pro/Components";
 </script>
