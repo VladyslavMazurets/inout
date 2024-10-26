@@ -80,7 +80,7 @@
             {{ $t("craftable-pro", "Last Name") }}
         </ListingHeaderCell> 
         <ListingHeaderCell>
-            {{ $t("craftable-pro", "Links") }}
+            {{ $t("craftable-pro", "Link") }}
         </ListingHeaderCell>
         <ListingHeaderCell>
           <span class="sr-only">{{ $t("craftable-pro", "Actions") }}</span>
@@ -98,7 +98,7 @@
              {{ item.last_name }}
         </ListingDataCell> 
         <ListingDataCell>
-             {{ item.links?.[currentLocale] }}
+             {{ item.link?.[currentLocale] }}
         </ListingDataCell>
         <ListingDataCell>
           <div class="flex items-center justify-end gap-3">

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\CraftablePro;
 
 use App\Models\Author;
@@ -36,18 +37,21 @@ class AuthorController extends Controller
         $authorsQuery = QueryBuilder::for(Author::class)
             ->allowedFilters([
                 AllowedFilter::custom('search', new FuzzyFilter(
-                    'id','first_name','last_name','links'
+                    'id',
+                    'first_name',
+                    'last_name',
+                    'link'
                 )),
             ])
             ->defaultSort($defaultSort)
-            ->allowedSorts('id','first_name','last_name','links');
+            ->allowedSorts('id', 'first_name', 'last_name', 'link');
 
         if ($request->wantsJson() && $request->get('bulk_select_all')) {
             return response()->json($authorsQuery->select(['id'])->pluck('id'));
         }
 
         $authors = $authorsQuery
-            ->select('id','first_name','last_name','links')
+            ->select('id', 'first_name', 'last_name', 'link')
             ->paginate($request->get('per_page'))->withQueryString();
 
         Session::put('authors_url', $request->fullUrl());
@@ -62,9 +66,7 @@ class AuthorController extends Controller
      */
     public function create(CreateAuthorRequest $request): Response
     {
-        return Inertia::render('Author/Create', [
-            
-        ]);
+        return Inertia::render('Author/Create', []);
     }
 
     /**
@@ -86,7 +88,7 @@ class AuthorController extends Controller
 
         return Inertia::render('Author/Edit', [
             'author' => $author,
-            
+
         ]);
     }
 
@@ -137,5 +139,4 @@ class AuthorController extends Controller
 
         return redirect()->back()->with(['message' => ___('craftable-pro', 'Operation successful')]);
     }
-
 }

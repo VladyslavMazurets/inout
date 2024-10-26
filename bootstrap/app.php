@@ -21,7 +21,10 @@ return Application::configure(basePath: dirname(__DIR__))
             LoginAuthenticator::class,
             Authorize::class,
         ])->appendToGroup('craftable-pro', [
+            \Illuminate\Cookie\Middleware\EncryptCookies::class,
             \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

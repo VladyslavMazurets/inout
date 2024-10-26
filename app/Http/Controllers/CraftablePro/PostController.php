@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\CraftablePro;
 
 use App\Models\Post;
@@ -10,6 +11,7 @@ use App\Http\Requests\CraftablePro\Post\EditPostRequest;
 use App\Http\Requests\CraftablePro\Post\UpdatePostRequest;
 use App\Http\Requests\CraftablePro\Post\DestroyPostRequest;
 use App\Http\Requests\CraftablePro\Post\BulkDestroyPostRequest;
+use App\Models\Author;
 use Brackets\CraftablePro\Queries\Filters\FuzzyFilter;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -36,18 +38,20 @@ class PostController extends Controller
         $postsQuery = QueryBuilder::for(Post::class)
             ->allowedFilters([
                 AllowedFilter::custom('search', new FuzzyFilter(
-                    'id','title','slug'
+                    'id',
+                    'title',
+                    'slug'
                 )),
             ])
             ->defaultSort($defaultSort)
-            ->allowedSorts('id','title','slug');
+            ->allowedSorts('id', 'title', 'slug');
 
         if ($request->wantsJson() && $request->get('bulk_select_all')) {
             return response()->json($postsQuery->select(['id'])->pluck('id'));
         }
 
         $posts = $postsQuery
-            ->select('id','title','slug')
+            ->select('id', 'title', 'slug')
             ->paginate($request->get('per_page'))->withQueryString();
 
         Session::put('posts_url', $request->fullUrl());
@@ -63,7 +67,7 @@ class PostController extends Controller
     public function create(CreatePostRequest $request): Response
     {
         return Inertia::render('Post/Create', [
-            
+            'authorsOptions' => Author::all()->map(fn($author) => ['value' => $author->id, 'label' => $author->first_name . ' ' . $author->last_name]),
         ]);
     }
 
@@ -74,6 +78,10 @@ class PostController extends Controller
     {
         $post = Post::create($request->validated());
 
+        if ($request->has('authors_ids')) {
+            $post->authors()->sync($request->input('authors_ids'));
+        }
+
         return redirect()->route('craftable-pro.posts.index')->with(['message' => ___('craftable-pro', 'Operation successful')]);
     }
 
@@ -82,11 +90,11 @@ class PostController extends Controller
      */
     public function edit(EditPostRequest $request, Post $post): Response
     {
-        $post->load('media');
+        $post->load('media', 'authors');
 
         return Inertia::render('Post/Edit', [
             'post' => $post,
-            
+            'authorsOptions' => Author::all()->map(fn($author) => ['value' => $author->id, 'label' => $author->first_name . ' ' . $author->last_name]),
         ]);
     }
 
@@ -96,6 +104,10 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, Post $post): RedirectResponse
     {
         $post->update($request->validated());
+
+        if ($request->has('authors_ids')) {
+            $post->authors()->sync($request->input('authors_ids'));
+        }
 
         if (session('posts_url')) {
             return redirect(session('posts_url'))->with(['message' => ___('craftable-pro', 'Operation successful')]);
@@ -137,5 +149,4 @@ class PostController extends Controller
 
         return redirect()->back()->with(['message' => ___('craftable-pro', 'Operation successful')]);
     }
-
 }

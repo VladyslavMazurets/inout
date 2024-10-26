@@ -1,6 +1,9 @@
 <template>
     <div>
-        <h1 class="w-full bg-red-500 text-2xl font-bold">Hello word!</h1>
+        <h1 class="w-full text-blue-800 text-2xl font-bold">Hello word!</h1>
+        <div>
+            <!-- <span class="text-5xl text-green-500"> Test text New test </span> -->
+        </div>
     </div>
 </template>
 
