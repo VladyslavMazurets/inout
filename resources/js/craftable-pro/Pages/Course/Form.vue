@@ -23,23 +23,36 @@
                         :label="$t('craftable-pro', 'Description')"
                     />
 
-                    <div class="grid grid-cols-3 gap-4">
+                    <div class="grid grid-cols-2 gap-4">
                         <TextInput
                             v-model="form.price"
                             name="price"
+                            type="number"
                             :label="$t('craftable-pro', 'Price')"
                         />
 
                         <TextInput
                             v-model="form.discount"
                             name="discount"
+                            type="number"
                             :label="$t('craftable-pro', 'Discount')"
                         />
-                        
+
                         <TextInput
                             v-model="form.duration"
                             name="duration"
+                            type="number"
                             :label="$t('craftable-pro', 'Duration')"
+                        />
+
+                        <Multiselect
+                            v-model="form.instructors_ids"
+                            name="instructors"
+                            :can-deselect="true"
+                            :label="$t('craftable-pro', 'Instructors')"
+                            :options="props.instructorsOptions"
+                            :mode="'multiple'"
+                            class="flex-1"
                         />
                     </div>
 
@@ -62,19 +75,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
 import {
     Card,
     TextInput,
     Wysiwyg,
     TextArea,
     PageContent,
-    DatePicker,
-    Checkbox,
     Dropzone,
-    ImageUpload,
     Multiselect,
-    CardLocaleSwitcher,
 } from "craftable-pro/Components";
 import { InertiaForm } from "craftable-pro/types";
 import type { CourseForm } from "./types";
@@ -82,6 +90,7 @@ import type { CourseForm } from "./types";
 interface Props {
     form: InertiaForm<CourseForm>;
     submit: void;
+    instructorsOptions: { value: number; lable: string }[];
 }
 
 const props = defineProps<Props>();

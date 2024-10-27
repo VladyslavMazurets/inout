@@ -5,7 +5,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Brackets\CraftablePro\Media\ProcessMediaTrait;
 use Brackets\CraftablePro\Media\AutoProcessMediaTrait;
 use Brackets\CraftablePro\Media\InteractsWithMedia;
@@ -15,27 +14,26 @@ use Brackets\CraftablePro\Media\HasMediaPreviewsTrait;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Course extends Model  implements HasMedia
+class Instructor extends Model  implements HasMedia
 {
 
-    use SoftDeletes;
     use HasSlug;
     use ProcessMediaTrait;
     use AutoProcessMediaTrait;
     use InteractsWithMedia;
     use HasMediaPreviewsTrait;
 
-    protected $table = 'courses';
-    protected $fillable = ['title', 'slug', 'description', 'price', 'discount', 'duration', 'content'];
+    protected $table = 'instructors';
+    protected $fillable = ['first_name', 'last_name', 'slug', 'description', 'position', 'instagram_link', 'telegram_link', 'custom_link'];
 
-    public function instructors()
+    public function courses()
     {
-        return $this->belongsToMany(\App\Models\Instructor::class);
+        return $this->belongsToMany(\App\Models\Course::class);
     }
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('baner');
+        $this->addMediaCollection('profile_picture');
     }
 
     public function registerMediaConversions(Media $media = null): void
@@ -46,7 +44,7 @@ class Course extends Model  implements HasMedia
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom(['title'])
+            ->generateSlugsFrom(['first_name', 'last_name'])
             ->saveSlugsTo('slug');
     }
 

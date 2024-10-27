@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\CraftablePro;
 
 use App\Models\Course;
@@ -10,6 +11,7 @@ use App\Http\Requests\CraftablePro\Course\EditCourseRequest;
 use App\Http\Requests\CraftablePro\Course\UpdateCourseRequest;
 use App\Http\Requests\CraftablePro\Course\DestroyCourseRequest;
 use App\Http\Requests\CraftablePro\Course\BulkDestroyCourseRequest;
+use App\Models\Instructor;
 use Brackets\CraftablePro\Queries\Filters\FuzzyFilter;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -36,18 +38,25 @@ class CourseController extends Controller
         $coursesQuery = QueryBuilder::for(Course::class)
             ->allowedFilters([
                 AllowedFilter::custom('search', new FuzzyFilter(
-                    'id','title','slug','description','price','discount','duration','content'
+                    'id',
+                    'title',
+                    'slug',
+                    'description',
+                    'price',
+                    'discount',
+                    'duration',
+                    'content'
                 )),
             ])
             ->defaultSort($defaultSort)
-            ->allowedSorts('id','title','slug','description','price','discount','duration','content');
+            ->allowedSorts('id', 'title', 'slug', 'description', 'price', 'discount', 'duration', 'content');
 
         if ($request->wantsJson() && $request->get('bulk_select_all')) {
             return response()->json($coursesQuery->select(['id'])->pluck('id'));
         }
 
         $courses = $coursesQuery
-            ->select('id','title','slug','description','price','discount','duration','content')
+            ->select('id', 'title', 'slug', 'description', 'price', 'discount', 'duration', 'content')
             ->paginate($request->get('per_page'))->withQueryString();
 
         Session::put('courses_url', $request->fullUrl());
@@ -63,7 +72,7 @@ class CourseController extends Controller
     public function create(CreateCourseRequest $request): Response
     {
         return Inertia::render('Course/Create', [
-            
+            'instructorsOptions' => Instructor::all()->map(fn($instructor) => ['value' => $instructor->id, 'label' => $instructor->first_name . ' ' . $instructor->last_name]),
         ]);
     }
 
@@ -74,6 +83,10 @@ class CourseController extends Controller
     {
         $course = Course::create($request->validated());
 
+        if ($request->has('instructors_ids')) {
+            $course->instructors()->sync($request->get('instructors_ids'));
+        }
+
         return redirect()->route('craftable-pro.courses.index')->with(['message' => ___('craftable-pro', 'Operation successful')]);
     }
 
@@ -82,11 +95,12 @@ class CourseController extends Controller
      */
     public function edit(EditCourseRequest $request, Course $course): Response
     {
-        $course->load('media');
+
+        $course->load('media', 'instructors');
 
         return Inertia::render('Course/Edit', [
             'course' => $course,
-            
+            'instructorsOptions' => Instructor::all()->map(fn($instructor) => ['value' => $instructor->id, 'label' => $instructor->first_name . ' ' . $instructor->last_name]),
         ]);
     }
 
@@ -96,6 +110,10 @@ class CourseController extends Controller
     public function update(UpdateCourseRequest $request, Course $course): RedirectResponse
     {
         $course->update($request->validated());
+
+        if ($request->has('instructors_ids')) {
+            $course->instructors()->sync($request->get('instructors_ids'));
+        }
 
         if (session('courses_url')) {
             return redirect(session('courses_url'))->with(['message' => ___('craftable-pro', 'Operation successful')]);
@@ -137,5 +155,4 @@ class CourseController extends Controller
 
         return redirect()->back()->with(['message' => ___('craftable-pro', 'Operation successful')]);
     }
-
 }

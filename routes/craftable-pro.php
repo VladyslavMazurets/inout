@@ -33,8 +33,19 @@ Route::middleware('craftable-pro-middlewares')->prefix('admin')->name('craftable
     Route::get('courses', [App\Http\Controllers\CraftablePro\CourseController::class, 'index'])->name('courses.index');
     Route::get('courses/create', [App\Http\Controllers\CraftablePro\CourseController::class, 'create'])->name('courses.create');
     Route::post('courses', [App\Http\Controllers\CraftablePro\CourseController::class, 'store'])->name('courses.store');
-    Route::get('courses/edit/{post}', [App\Http\Controllers\CraftablePro\CourseController::class, 'edit'])->name('courses.edit');
-    Route::match(['put', 'patch'], 'courses/{post}', [App\Http\Controllers\CraftablePro\CourseController::class, 'update'])->name('courses.update');
-    Route::delete('courses/{post}', [App\Http\Controllers\CraftablePro\CourseController::class, 'destroy'])->name('courses.destroy');
+    Route::get('courses/edit/{course}', [App\Http\Controllers\CraftablePro\CourseController::class, 'edit'])->name('courses.edit');
+    Route::match(['put', 'patch'], 'courses/{course}', [App\Http\Controllers\CraftablePro\CourseController::class, 'update'])->name('courses.update');
+    Route::delete('courses/{course}', [App\Http\Controllers\CraftablePro\CourseController::class, 'destroy'])->name('courses.destroy');
     Route::post('courses/bulk-destroy', [App\Http\Controllers\CraftablePro\CourseController::class, 'bulkDestroy'])->name('courses.bulk-destroy');
+});
+
+/* Auto-generated admin routes */
+Route::middleware('craftable-pro-middlewares')->prefix('admin')->name('craftable-pro.')->group(function () {
+    Route::get('instructors', [App\Http\Controllers\CraftablePro\InstructorController::class, 'index'])->name('instructors.index');
+    Route::get('instructors/create', [App\Http\Controllers\CraftablePro\InstructorController::class, 'create'])->name('instructors.create');
+    Route::post('instructors', [App\Http\Controllers\CraftablePro\InstructorController::class, 'store'])->name('instructors.store');
+    Route::get('instructors/edit/{instructor}', [App\Http\Controllers\CraftablePro\InstructorController::class, 'edit'])->name('instructors.edit');
+    Route::match(['put', 'patch'], 'instructors/{instructor}', [App\Http\Controllers\CraftablePro\InstructorController::class, 'update'])->name('instructors.update');
+    Route::delete('instructors/{instructor}', [App\Http\Controllers\CraftablePro\InstructorController::class, 'destroy'])->name('instructors.destroy');
+    Route::post('instructors/bulk-destroy', [App\Http\Controllers\CraftablePro\InstructorController::class, 'bulkDestroy'])->name('instructors.bulk-destroy');
 });

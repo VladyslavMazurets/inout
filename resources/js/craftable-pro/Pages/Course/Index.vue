@@ -189,27 +189,21 @@
 </template>
 
 <script setup lang="ts">
-import { Link, usePage } from "@inertiajs/vue3";
+import { Link } from "@inertiajs/vue3";
 import {
     PlusIcon,
     TrashIcon,
     PencilSquareIcon,
-    ArrowDownTrayIcon,
 } from "@heroicons/vue/24/outline";
 import {
     PageHeader,
     PageContent,
     Button,
     Listing,
-    Avatar,
     ListingHeaderCell,
     ListingDataCell,
     Modal,
-    Multiselect,
     IconButton,
-    FiltersDropdown,
-    Publish,
-    ListingToggle,
 } from "craftable-pro/Components";
 import { PaginatedCollection } from "craftable-pro/types/pagination";
 import type { Course } from "./types";
