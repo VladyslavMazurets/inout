@@ -12,7 +12,18 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                primary: colors.indigo,
+                primary: {
+                    50: "#fff7e0",
+                    100: "#ffe9b3",
+                    200: "#ffda80",
+                    300: "#ffc94d",
+                    400: "#ffb824",
+                    500: "#ffaa00",
+                    600: "#e69900",
+                    700: "#cc8800",
+                    800: "#b37700",
+                    900: "#8c5c00",
+                },
                 secondary: colors.fuchsia,
                 gray: colors.slate,
                 warning: colors.amber,
