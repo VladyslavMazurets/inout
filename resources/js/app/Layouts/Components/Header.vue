@@ -1,7 +1,7 @@
 <template>
-    <nav class="sticky top-0 p-4">
+    <nav class="sticky top-0">
         <div
-            class="flex items-center justify-between px-14 py-4 bg-black text-white border-4 border-white rounded-full"
+            class="flex items-center justify-between px-10 py-3 bg-black text-white"
         >
             <div class="flex w-[150px] h-[60px]">
                 <img
@@ -13,7 +13,7 @@
                 />
             </div>
 
-            <div class="w-2/5 flex items-center justify-around">
+            <div class="w-2/6 flex items-center justify-around">
                 <NavLink
                     :href="'/'"
                     :icon="AcademicCapIcon"
