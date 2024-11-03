@@ -46,14 +46,14 @@ export default defineConfig({
             ziggy: resolve(__dirname, "./vendor/tightenco/ziggy"),
         },
     },
-    server: {
-        hmr: {
-            protocol: "ws",
-            host: "localhost",
-        },
-        watch: {
-            usePolling: true,
-            interval: 10000,
-        },
-    },
+    // server: {
+    //     hmr: {
+    //         protocol: "ws",
+    //         host: "localhost",
+    //     },
+    //     watch: {
+    //         usePolling: true,
+    //         interval: 10000,
+    //     },
+    // },
 });
