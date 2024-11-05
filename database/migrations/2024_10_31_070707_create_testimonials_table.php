@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('course_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('position');
             $table->integer('rating');

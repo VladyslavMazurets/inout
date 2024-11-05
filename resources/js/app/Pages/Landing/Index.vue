@@ -1,10 +1,9 @@
 <template>
+  <div>
     <div>
-        <h1 class="w-full text-blue-800 text-2xl font-bold">Hello word!</h1>
-        <div>
-            <!-- <span class="text-5xl text-green-500"> Test text New test </span> -->
-        </div>
+      <div class="my-4 h-[800px] w-full rounded-3xl bg-black"></div>
     </div>
+  </div>
 </template>
 
 <script setup lang="ts"></script>
