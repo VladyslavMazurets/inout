@@ -12,6 +12,7 @@ use Brackets\CraftablePro\Media\InteractsWithMedia;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Brackets\CraftablePro\Media\HasMediaPreviewsTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
@@ -20,6 +21,7 @@ class Course extends Model  implements HasMedia
 
     use SoftDeletes;
     use HasSlug;
+    use HasFactory;
     use ProcessMediaTrait;
     use AutoProcessMediaTrait;
     use InteractsWithMedia;

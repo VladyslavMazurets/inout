@@ -8,7 +8,6 @@
     >
       {{ $t("craftable-pro", "New Course") }}
     </Button>
-    
   </PageHeader>
 
   <PageContent>
@@ -48,9 +47,13 @@
             <Button
               @click.prevent="
                 () => {
-                  bulkAction('post', route('craftable-pro.courses.bulk-destroy'), {
-                    onFinish: () => setIsOpen(false),
-                  });
+                  bulkAction(
+                    'post',
+                    route('craftable-pro.courses.bulk-destroy'),
+                    {
+                      onFinish: () => setIsOpen(false),
+                    }
+                  );
                 }
               "
               color="danger"
@@ -69,60 +72,47 @@
         </Modal>
       </template>
       <template #tableHead>
-        
         <ListingHeaderCell>
-            {{ $t("craftable-pro", "Id") }}
-        </ListingHeaderCell> 
+          {{ $t("craftable-pro", "Id") }}
+        </ListingHeaderCell>
         <ListingHeaderCell>
-            {{ $t("craftable-pro", "Title") }}
-        </ListingHeaderCell> 
+          {{ $t("craftable-pro", "Title") }}
+        </ListingHeaderCell>
         <ListingHeaderCell>
-            {{ $t("craftable-pro", "Slug") }}
-        </ListingHeaderCell> 
+          {{ $t("craftable-pro", "Slug") }}
+        </ListingHeaderCell>
         <ListingHeaderCell>
-            {{ $t("craftable-pro", "Description") }}
-        </ListingHeaderCell> 
+          {{ $t("craftable-pro", "Price") }}
+        </ListingHeaderCell>
         <ListingHeaderCell>
-            {{ $t("craftable-pro", "Price") }}
-        </ListingHeaderCell> 
+          {{ $t("craftable-pro", "Discount") }}
+        </ListingHeaderCell>
         <ListingHeaderCell>
-            {{ $t("craftable-pro", "Discount") }}
-        </ListingHeaderCell> 
-        <ListingHeaderCell>
-            {{ $t("craftable-pro", "Duration") }}
-        </ListingHeaderCell> 
-        <ListingHeaderCell>
-            {{ $t("craftable-pro", "Content") }}
+          {{ $t("craftable-pro", "Duration") }}
         </ListingHeaderCell>
         <ListingHeaderCell>
           <span class="sr-only">{{ $t("craftable-pro", "Actions") }}</span>
         </ListingHeaderCell>
       </template>
       <template #tableRow="{ item, action }: any">
-        
         <ListingDataCell>
-             {{ item.id }}
-        </ListingDataCell> 
+          {{ item.id }}
+        </ListingDataCell>
         <ListingDataCell>
-             {{ item.title }}
-        </ListingDataCell> 
+          {{ item.title }}
+        </ListingDataCell>
         <ListingDataCell>
-             {{ item.slug }}
-        </ListingDataCell> 
+          {{ item.slug }}
+        </ListingDataCell>
+
         <ListingDataCell>
-             {{ item.description }}
-        </ListingDataCell> 
+          {{ item.price }}
+        </ListingDataCell>
         <ListingDataCell>
-             {{ item.price }}
-        </ListingDataCell> 
+          {{ item.discount }}
+        </ListingDataCell>
         <ListingDataCell>
-             {{ item.discount }}
-        </ListingDataCell> 
-        <ListingDataCell>
-             {{ item.duration }}
-        </ListingDataCell> 
-        <ListingDataCell>
-             {{ item.content }}
+          {{ item.duration }}
         </ListingDataCell>
         <ListingDataCell>
           <div class="flex items-center justify-end gap-3">
@@ -162,9 +152,13 @@
                 <Button
                   @click.prevent="
                     () => {
-                      action('delete', route('craftable-pro.courses.destroy', item), {
-                        onFinish: () => setIsOpen(false),
-                      });
+                      action(
+                        'delete',
+                        route('craftable-pro.courses.destroy', item),
+                        {
+                          onFinish: () => setIsOpen(false),
+                        }
+                      );
                     }
                   "
                   color="danger"
@@ -189,35 +183,33 @@
 </template>
 
 <script setup lang="ts">
-import { Link } from "@inertiajs/vue3";
-import {
+  import {
+    PencilSquareIcon,
     PlusIcon,
     TrashIcon,
-    PencilSquareIcon,
-} from "@heroicons/vue/24/outline";
-import {
-    PageHeader,
-    PageContent,
+  } from "@heroicons/vue/24/outline";
+  import { Link } from "@inertiajs/vue3";
+  import {
     Button,
-    Listing,
-    ListingHeaderCell,
-    ListingDataCell,
-    Modal,
     IconButton,
-} from "craftable-pro/Components";
-import { PaginatedCollection } from "craftable-pro/types/pagination";
-import type { Course } from "./types";
-import type { PageProps } from "craftable-pro/types/page";
-import dayjs from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
+    Listing,
+    ListingDataCell,
+    ListingHeaderCell,
+    Modal,
+    PageContent,
+    PageHeader,
+  } from "craftable-pro/Components";
+  import type { PageProps } from "craftable-pro/types/page";
+  import { PaginatedCollection } from "craftable-pro/types/pagination";
+  import dayjs from "dayjs";
+  import customParseFormat from "dayjs/plugin/customParseFormat";
 
-dayjs.extend(customParseFormat)
+  import type { Course } from "./types";
 
+  dayjs.extend(customParseFormat);
 
-
-interface Props {
-  courses: PaginatedCollection<Course>;
-}
-defineProps<Props>();
-
+  interface Props {
+    courses: PaginatedCollection<Course>;
+  }
+  defineProps<Props>();
 </script>
