@@ -11,10 +11,11 @@ use Brackets\CraftablePro\Media\InteractsWithMedia;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Brackets\CraftablePro\Media\HasMediaPreviewsTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Author extends Model  implements HasMedia
 {
-
+    use HasFactory;
     use ProcessMediaTrait;
     use AutoProcessMediaTrait;
     use InteractsWithMedia;
