@@ -6,6 +6,7 @@ use App\Models\Author;
 use App\Models\Course;
 use App\Models\Instructor;
 use App\Models\Post;
+use App\Models\Testimonial;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -26,6 +27,13 @@ class DatabaseSeeder extends Seeder
 
         Course::factory(10)->create()->each(function ($course) use ($instructors) {
             $course->instructors()->attach($instructors->random(3)->pluck('id'));
+        });
+
+        $courses = Course::all();
+
+        Testimonial::factory(10)->create()->each(function ($testimonial) use ($courses) {
+            $testimonial->course_id = $courses->random()->id;
+            $testimonial->save();
         });
     }
 }
