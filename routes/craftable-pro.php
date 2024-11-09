@@ -49,3 +49,14 @@ Route::middleware('craftable-pro-middlewares')->prefix('admin')->name('craftable
     Route::delete('instructors/{instructor}', [App\Http\Controllers\CraftablePro\InstructorController::class, 'destroy'])->name('instructors.destroy');
     Route::post('instructors/bulk-destroy', [App\Http\Controllers\CraftablePro\InstructorController::class, 'bulkDestroy'])->name('instructors.bulk-destroy');
 });
+
+/* Auto-generated admin routes */
+Route::middleware('craftable-pro-middlewares')->prefix('admin')->name('craftable-pro.')->group(function () {
+    Route::get('testimonials', [App\Http\Controllers\CraftablePro\TestimonialController::class, 'index'])->name('testimonials.index');
+    Route::get('testimonials/create', [App\Http\Controllers\CraftablePro\TestimonialController::class, 'create'])->name('testimonials.create');
+    Route::post('testimonials', [App\Http\Controllers\CraftablePro\TestimonialController::class, 'store'])->name('testimonials.store');
+    Route::get('testimonials/edit/{testimonial}', [App\Http\Controllers\CraftablePro\TestimonialController::class, 'edit'])->name('testimonials.edit');
+    Route::match(['put', 'patch'], 'testimonials/{testimonial}', [App\Http\Controllers\CraftablePro\TestimonialController::class, 'update'])->name('testimonials.update');
+    Route::delete('testimonials/{testimonial}', [App\Http\Controllers\CraftablePro\TestimonialController::class, 'destroy'])->name('testimonials.destroy');
+    Route::post('testimonials/bulk-destroy', [App\Http\Controllers\CraftablePro\TestimonialController::class, 'bulkDestroy'])->name('testimonials.bulk-destroy');
+});
