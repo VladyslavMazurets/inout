@@ -25,6 +25,13 @@
                     {{ $t("craftable-pro", "Courses") }}
                 </SidebarItem>
 
+                <SidebarItem
+                    :href="route('craftable-pro.testimonials.index')"
+                    :icon="ChatBubbleLeftIcon"
+                    v-can="'craftable-pro.testimonial.index'"
+                >
+                    {{ $t("craftable-pro", "Testimonials") }}
+                </SidebarItem>
                 <!--AppendGeneratorLink-->
             </SidebarGroup>
 
@@ -98,6 +105,7 @@ import {
     QueueListIcon,
     AcademicCapIcon,
     UserIcon,
+    ChatBubbleLeftIcon,
 } from "@heroicons/vue/24/outline";
 import { SidebarItem, SidebarGroup } from "craftable-pro/Components";
 </script>

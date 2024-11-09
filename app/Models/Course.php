@@ -32,7 +32,12 @@ class Course extends Model  implements HasMedia
 
     public function instructors()
     {
-        return $this->belongsToMany(\App\Models\Instructor::class);
+        return $this->belongsToMany(Instructor::class);
+    }
+
+    public function testimonials()
+    {
+        return $this->hasMany(Testimonial::class);
     }
 
     public function registerMediaCollections(): void

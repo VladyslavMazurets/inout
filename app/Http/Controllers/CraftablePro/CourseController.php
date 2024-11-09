@@ -12,6 +12,7 @@ use App\Http\Requests\CraftablePro\Course\UpdateCourseRequest;
 use App\Http\Requests\CraftablePro\Course\DestroyCourseRequest;
 use App\Http\Requests\CraftablePro\Course\BulkDestroyCourseRequest;
 use App\Models\Instructor;
+use App\Models\Testimonial;
 use Brackets\CraftablePro\Queries\Filters\FuzzyFilter;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -73,6 +74,7 @@ class CourseController extends Controller
     {
         return Inertia::render('Course/Create', [
             'instructorsOptions' => Instructor::all()->map(fn($instructor) => ['value' => $instructor->id, 'label' => $instructor->first_name . ' ' . $instructor->last_name]),
+            'testimonialsOptions' => Testimonial::whereNull('course_id')->get()->map(fn($testimonial) => ['value' => $testimonial->id, 'label' => $testimonial->name]),
         ]);
     }
 
@@ -87,6 +89,10 @@ class CourseController extends Controller
             $course->instructors()->sync($request->get('instructors_ids'));
         }
 
+        if ($request->has('testimonials_ids')) {
+            Testimonial::whereIn('id', $request->get('testimonials_ids'))->update(['course_id' => $course->id]);
+        }
+
         return redirect()->route('craftable-pro.courses.index')->with(['message' => ___('craftable-pro', 'Operation successful')]);
     }
 
@@ -96,11 +102,18 @@ class CourseController extends Controller
     public function edit(EditCourseRequest $request, Course $course): Response
     {
 
-        $course->load('media', 'instructors');
+        $course->load('media', 'instructors', 'testimonials');
 
         return Inertia::render('Course/Edit', [
             'course' => $course,
             'instructorsOptions' => Instructor::all()->map(fn($instructor) => ['value' => $instructor->id, 'label' => $instructor->first_name . ' ' . $instructor->last_name]),
+            "testimonialsOptions" => $testimonialsOptions = Testimonial::where(function ($query) use ($course) {
+                $query->where('course_id', $course->id)
+                    ->orWhereNull('course_id');
+            })->get()->map(fn($testimonial) => [
+                'value' => $testimonial->id,
+                'label' => $testimonial->name
+            ]),
         ]);
     }
 
@@ -113,6 +126,11 @@ class CourseController extends Controller
 
         if ($request->has('instructors_ids')) {
             $course->instructors()->sync($request->get('instructors_ids'));
+        }
+
+        if ($request->has('testimonials_ids')) {
+            Testimonial::where('course_id', $course->id)->update(['course_id' => null]);
+            Testimonial::whereIn('id', $request->get('testimonials_ids'))->update(['course_id' => $course->id]);
         }
 
         if (session('courses_url')) {
