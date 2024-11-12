@@ -6,7 +6,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Landing/Index');
-});
+})->name('landing');
 
 
 Route::get('/courses', function () {
