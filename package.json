@@ -12,6 +12,7 @@
         "@headlessui/vue": "^1.7.4",
         "@heroicons/vue": "^2.0.13",
         "@inertiajs/vue3": "^1.0.0",
+        "@inspira-ui/plugins": "^0.0.1",
         "@tailwindcss/forms": "^0.5.3",
         "@tailwindcss/typography": "^0.5.7",
         "@tiptap/extension-image": "^2.0.0",
@@ -29,6 +30,8 @@
         "@vueform/multiselect": "^2.5.6",
         "autoprefixer": "^10.4.2",
         "axios": "^1.7.4",
+        "class-variance-authority": "^0.7.0",
+        "clsx": "^2.1.1",
         "cropperjs": "^1.5.13",
         "dayjs": "^1.11.5",
         "laravel-vite-plugin": "^0.7.0",
@@ -36,7 +39,9 @@
         "lodash": "^4.17.19",
         "postcss": "^8.4.6",
         "postcss-import": "^14.1.0",
+        "tailwind-merge": "^2.5.4",
         "tailwindcss": "^3.3.1",
+        "tailwindcss-animate": "^1.0.7",
         "uuid": "^9.0.0",
         "v-calendar": "^3.0.3",
         "vite": "^4.0.0",
@@ -46,6 +51,8 @@
     },
     "dependencies": {
         "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+        "@vueuse/core": "^11.2.0",
+        "@vueuse/motion": "^2.2.6",
         "prettier-plugin-tailwindcss": "^0.6.8"
     }
 }
