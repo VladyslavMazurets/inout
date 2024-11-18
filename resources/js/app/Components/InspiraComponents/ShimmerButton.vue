@@ -1,5 +1,7 @@
 <template>
-  <button
+  <component
+    :is="href ? Link : 'button'"
+    :href="href"
     :class="
       cn(
         'group relative z-0 flex cursor-pointer items-center justify-center overflow-hidden whitespace-nowrap border border-white/10 px-6 py-3 text-white [background:var(--bg)] [border-radius:var(--radius)] dark:text-black',
@@ -56,10 +58,12 @@
     <div
       class="absolute -z-20 [background:var(--bg)] [border-radius:var(--radius)] [inset:var(--cut)]"
     />
-  </button>
+  </component>
 </template>
 
 <script lang="ts" setup>
+  import { Link } from "@inertiajs/vue3";
+
   import { cn } from "@/app/lib/utils";
 
   type ShimmerButtonProps = {
@@ -69,6 +73,7 @@
     shimmerDuration?: string;
     background?: string;
     class?: string;
+    href?: string;
   };
 
   withDefaults(defineProps<ShimmerButtonProps>(), {
