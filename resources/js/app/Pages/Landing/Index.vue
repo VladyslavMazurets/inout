@@ -74,8 +74,8 @@
           <ImagesSlider
             :images="images"
             autoplay
-            :overlay-class="'min-h-[1080px]'"
-            :image-class="'rounded-3xl object-cover object-center'"
+            :overlay-class="'h-[355px]'"
+            :image-class="'rounded-3xl object-cover object-center w-full h-full'"
           />
         </div>
       </div>
@@ -88,16 +88,16 @@
       />
       <div class="grid grid-cols-3">
         <div
-          v-for="(course, index) in 5"
+          v-for="(course, index) in courses"
           class="z-20"
           :class="[index === 3 ? 'col-span-2' : '']"
         >
           <CourseCard
-            :key="course"
-            :title="'Lorem ipsum dolor sit amet consectetur'"
-            :description="'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem nam cumque debitis quo accusantium praesentium quia velit inventore doloremque a! Totam expedita quisquam est.'"
-            :image-url="'https://picsum.photos/seed/five-stories-falling/1920/1080'"
-            :href="route('courses')"
+            :key="course.id"
+            :title="course.title"
+            :description="course.description"
+            :image-url="course.media"
+            :href="course.slug"
           />
         </div>
       </div>
@@ -124,9 +124,17 @@
   import TextHighlight from "@/app/Components/InspiraComponents/TextHighlight.vue";
   import StatisticCard from "@/app/Components/StatisticCard.vue";
 
+  import { Course } from "@/app/types";
+
+  interface Props {
+    courses: Course[];
+  }
+
+  const props = defineProps<Props>();
+
   const images = [
-    "https://picsum.photos/seed/waiting/1920/1080",
-    "https://picsum.photos/seed/full-collapse/1920/1080",
-    "https://picsum.photos/seed/five-stories-falling/1920/1080",
+    "https://inout.com.ua/wp-content/uploads/2023/10/IMG_9859-scaled.jpg",
+    "https://inout.com.ua/wp-content/uploads/2023/10/inout-19-scaled.jpg",
+    "https://inout.com.ua/wp-content/uploads/2023/10/IMG_0860-scaled.jpg",
   ];
 </script>

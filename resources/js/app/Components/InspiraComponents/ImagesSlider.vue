@@ -8,7 +8,7 @@
     }"
   >
     <Transition mode="out-in" v-bind="transitionProps">
-      <div :key="currentImage">
+      <div :key="currentImage" class="h-[355px] w-[632px]">
         <img :src="currentImage" :class="props.imageClass" />
       </div>
     </Transition>
@@ -30,7 +30,7 @@
 <script setup lang="ts">
   import { useSwipe } from "@vueuse/core";
   import { onKeyStroke, useIntervalFn } from "@vueuse/core";
-  import { computed, type PropType, ref, watch } from "vue";
+  import { computed, type PropType, Ref, ref, watch } from "vue";
 
   import { cn } from "@/app/lib/utils";
 
@@ -137,7 +137,7 @@
     }
     setCurrentDirection("next");
     let target = currentIndex.value + 1;
-    if (target >= loadedImages.value?.length - 1) {
+    if (target >= loadedImages.value?.length) {
       target = 0;
     }
     currentIndex.value = target;
@@ -240,7 +240,6 @@
         bind.leaveToClass = "translate-x-full";
         break;
     }
-
     return bind;
   });
 </script>

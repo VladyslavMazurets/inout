@@ -1,9 +1,12 @@
 <template>
   <CardContainer>
     <CardBody
-      class="group/card relative size-auto rounded-xl border border-white/15 bg-black p-6"
+      class="group/card relative size-auto max-h-[460px] rounded-xl border border-white/15 bg-black p-6"
     >
-      <CardItem :translate-z="50" class="text-xl font-bold text-white">
+      <CardItem
+        :translate-z="50"
+        class="line-clamp-2 h-[56px] text-xl font-bold text-white"
+      >
         {{ title }}
       </CardItem>
 
@@ -15,7 +18,7 @@
         {{ description }}
       </CardItem>
 
-      <CardItem :translate-z="100" class="mt-4 h-[214px] w-full">
+      <CardItem :translate-z="100" class="mt-4">
         <img
           :src="imageUrl"
           alt="course_image"
