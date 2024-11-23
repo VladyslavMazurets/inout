@@ -1,6 +1,6 @@
 <template>
   <CardSpotlight
-    class="cursor-pointe select-none items-center justify-center whitespace-nowrap px-10 py-6 text-4xl shadow-2xl"
+    class="cursor-pointe select-none items-center justify-center whitespace-nowrap p-10 text-4xl shadow-2xl"
     :slot-class="'flex flex-col items-center justify-center gap-4'"
     :gradient-color="'#363636'"
   >
@@ -9,7 +9,7 @@
       :decimalPlaces="0"
       :class="'text-5xl font-bold text-white'"
     />
-    <span class="text-2xl font-semibold">
+    <span class="font-playfair text-2xl font-semibold">
       {{ text }}
     </span>
   </CardSpotlight>

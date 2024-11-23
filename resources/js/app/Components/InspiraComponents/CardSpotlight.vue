@@ -1,7 +1,7 @@
 <template>
   <div
     :class="[
-      'group relative flex size-full overflow-hidden rounded-xl bg-neutral-900 text-white',
+      'group relative flex size-full overflow-hidden bg-neutral-900 text-white',
       $props.class,
     ]"
     @mousemove="handleMouseMove"
@@ -11,7 +11,7 @@
       <slot></slot>
     </div>
     <div
-      class="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+      class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
       :style="{
         background: backgroundStyle,
         opacity: gradientOpacity,

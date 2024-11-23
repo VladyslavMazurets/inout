@@ -14,25 +14,13 @@
       </Link>
 
       <div class="flex w-2/6 items-center justify-around">
-        <NavLink
-          :href="route('courses')"
-          :icon="AcademicCapIcon"
-          :text="'Courses'"
-        />
+        <NavLink :href="route('courses')" :text="'Courses'" />
 
-        <NavLink :href="route('posts')" :icon="PencilIcon" :text="'Posts'" />
+        <NavLink :href="route('posts')" :text="'Posts'" />
 
-        <NavLink
-          :href="route('instructors')"
-          :icon="UserIcon"
-          :text="'Instructors'"
-        />
+        <NavLink :href="route('instructors')" :text="'Instructors'" />
 
-        <NavLink
-          :href="route('prices')"
-          :icon="BanknotesIcon"
-          :text="'Price'"
-        />
+        <NavLink :href="route('prices')" :text="'Price'" />
       </div>
 
       <div class="flex items-center text-white">

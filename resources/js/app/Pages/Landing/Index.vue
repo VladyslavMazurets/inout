@@ -13,33 +13,26 @@
             ease: 'easeInOut',
           },
         }"
-        class="relative flex flex-col items-center gap-14"
+        class="relative flex w-full flex-col items-center gap-14"
       >
         <HyperText
           text="Inout - your space"
-          class="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-gray-400 to-white bg-clip-text text-center text-7xl font-semibold leading-none text-transparent"
-          :duration="800"
+          class="font-playfair pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-gray-400 to-white bg-clip-text text-center text-7xl font-semibold leading-none text-transparent"
+          :duration="500"
         />
-
-        <div class="flex items-center justify-center gap-8">
-          <StatisticCard :value="200" :text="'Graduates'" />
-          <StatisticCard :value="10" :text="'Types of courses'" />
-          <StatisticCard :value="500" :text="'Reviews'" />
-          <StatisticCard :value="330" :text="'Graduates'" />
-        </div>
 
         <div class="flex items-center gap-6">
           <ShimmerButton
             :href="route('courses')"
             :shimmer-size="'0'"
-            class="px-8 py-4 text-xl"
+            class="font-raleway px-8 py-4 text-xl"
           >
             Courses
           </ShimmerButton>
           <ShimmerButton
             :href="route('courses')"
             :shimmer-size="'0'"
-            class="px-8 py-4 text-xl"
+            class="font-raleway px-8 py-4 text-xl"
           >
             Instructors
           </ShimmerButton>
@@ -47,21 +40,30 @@
       </div>
     </AuroraBackground>
 
+    <div
+      class="w-[100% + 12px] -mx-12 flex items-center justify-center divide-x divide-solid divide-black pb-24"
+    >
+      <StatisticCard :value="200" :text="'Graduates'" />
+      <StatisticCard :value="10" :text="'Types of courses'" />
+      <StatisticCard :value="500" :text="'Reviews'" />
+      <StatisticCard :value="330" :text="'Graduates'" />
+    </div>
+
     <div class="mb-24 flex flex-col items-center justify-center">
       <div class="grid grid-flow-row grid-cols-2 items-start gap-20">
         <div class="flex flex-col gap-6 text-white">
-          <h1 class="text-5xl font-bold">
+          <h1 class="font-playfair text-5xl font-bold">
             Lorem ipsum dolor sit amet consectetur.
           </h1>
 
-          <span class="text-lg leading-8">
+          <span class="font-lora text-lg leading-8">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Pariatur
             iure excepturi eaque quasi voluptate dolorem alias quos?
             <TextHighlight
               :delay="300"
               class="bg-gradient-to-r from-amber-400 to-amber-700"
-              >Architecto quam ea eum iure quis,</TextHighlight
-            >
+              >Architecto quam ea eum iure quis,
+            </TextHighlight>
             nam soluta blanditiis vitae minus corporis, totam perspiciatis!
             Magnam, aut corrupti ducimus voluptate aperiam, unde voluptatibus
             magni voluptatum fugiat quae harum architecto quibusdam libero
@@ -84,7 +86,7 @@
     <div class="relative flex flex-col items-center gap-12 py-6">
       <FlipWords
         :words="['Explore', 'Learn', 'Grow', 'Achieve', 'Discover', 'Succeed']"
-        class="text-5xl font-bold text-white"
+        class="font-playfair text-5xl font-bold text-white"
       />
       <div class="grid grid-cols-3">
         <div

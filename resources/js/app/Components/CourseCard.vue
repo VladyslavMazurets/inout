@@ -5,7 +5,7 @@
     >
       <CardItem
         :translate-z="50"
-        class="line-clamp-2 h-[56px] text-xl font-bold text-white"
+        class="font-playfair line-clamp-2 h-[56px] text-xl font-bold text-white"
       >
         {{ title }}
       </CardItem>
@@ -13,7 +13,7 @@
       <CardItem
         as="p"
         translate-z="60"
-        class="mt-2 line-clamp-4 h-20 overflow-hidden text-sm text-white"
+        class="font-lora mt-2 line-clamp-4 h-20 overflow-hidden text-sm text-white"
       >
         {{ description }}
       </CardItem>
@@ -26,11 +26,11 @@
         />
       </CardItem>
 
-      <CardItem :translate-z="50" class="mt-4">
+      <CardItem :translate-z="50" class="ml-auto mt-4">
         <ShimmerButton
           :href="href"
           :shimmer-size="'0'"
-          class="flex w-max items-center gap-3"
+          class="font-raleway flex w-max items-center gap-3"
         >
           <span>Learn more</span>
           <ArrowRightIcon class="h-4 w-4" />
