@@ -17,7 +17,7 @@
       >
         <HyperText
           text="Inout - your space"
-          class="font-playfair pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-gray-400 to-white bg-clip-text text-center text-7xl font-semibold leading-none text-transparent"
+          class="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-gray-400 to-white bg-clip-text text-center font-playfair text-7xl font-semibold leading-none text-transparent"
           :duration="500"
         />
 
@@ -25,14 +25,14 @@
           <ShimmerButton
             :href="route('courses')"
             :shimmer-size="'0'"
-            class="font-raleway px-8 py-4 text-xl"
+            class="px-8 py-4 font-raleway text-xl"
           >
             Courses
           </ShimmerButton>
           <ShimmerButton
             :href="route('courses')"
             :shimmer-size="'0'"
-            class="font-raleway px-8 py-4 text-xl"
+            class="px-8 py-4 font-raleway text-xl"
           >
             Instructors
           </ShimmerButton>
@@ -88,6 +88,7 @@
         :words="['Explore', 'Learn', 'Grow', 'Achieve', 'Discover', 'Succeed']"
         class="font-playfair text-5xl font-bold text-white"
       />
+
       <div class="grid grid-cols-3">
         <div
           v-for="(course, index) in courses"
@@ -98,11 +99,12 @@
             :key="course.id"
             :title="course.title"
             :description="course.description"
-            :image-url="course.media"
+            :image-url="course.media[0]?.original_url"
             :href="course.slug"
           />
         </div>
       </div>
+
       <ParticlesBg
         class="absolute inset-0 z-10"
         :quantity="1000"
@@ -111,6 +113,21 @@
         :staticity="10"
         refresh
       />
+    </div>
+
+    <div class="flex flex-col items-center justify-center py-24">
+      <SparklesText
+        :text="'Team Inout'"
+        :sparkles-count="10"
+        :class="'font-playfair text-6xl font-bold text-white'"
+      />
+
+      <div class="flex flex-wrap items-center justify-center">
+        <InstructorCard
+          v-for="instructor in instructors"
+          :instructor="instructor"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -123,13 +140,16 @@
   import ImagesSlider from "@/app/Components/InspiraComponents/ImagesSlider.vue";
   import ParticlesBg from "@/app/Components/InspiraComponents/ParticlesBg.vue";
   import ShimmerButton from "@/app/Components/InspiraComponents/ShimmerButton.vue";
+  import SparklesText from "@/app/Components/InspiraComponents/SparklesText.vue";
   import TextHighlight from "@/app/Components/InspiraComponents/TextHighlight.vue";
+  import InstructorCard from "@/app/Components/InstructorCard.vue";
   import StatisticCard from "@/app/Components/StatisticCard.vue";
 
-  import { Course } from "@/app/types";
+  import { Course, Instructor } from "@/app/types";
 
   interface Props {
     courses: Course[];
+    instructors: Instructor[];
   }
 
   const props = defineProps<Props>();

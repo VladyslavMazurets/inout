@@ -102,7 +102,7 @@ class CourseController extends Controller
     public function edit(EditCourseRequest $request, Course $course): Response
     {
 
-        $course->load('media', 'instructors', 'testimonials');
+        $course->load('instructors', 'testimonials', 'media');
 
         return Inertia::render('Course/Edit', [
             'course' => $course,

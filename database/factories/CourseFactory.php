@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Course;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -25,5 +26,13 @@ class CourseFactory extends Factory
             'duration' => fake()->numberBetween(1, 10),
             'content' => fake()->paragraphs(3, true),
         ];
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (Course $course) {
+            $course->addMediaFromUrl("https://picsum.photos/id/{$course->id}/200/300")
+                ->toMediaCollection('baner');
+        });
     }
 }
