@@ -7,7 +7,6 @@ use App\Models\Course;
 use App\Models\Instructor;
 use App\Models\Post;
 use App\Models\Testimonial;
-use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -22,11 +21,11 @@ class DatabaseSeeder extends Seeder
         $instructors = Instructor::factory(6)->create();
 
         Post::factory(10)->create()->each(function ($post) use ($authors) {
-            $post->authors()->attach($authors->random(3)->pluck('id'));
+            $post->authors()->attach($authors->random(2)->pluck('id'));
         });
 
         Course::factory(10)->create()->each(function ($course) use ($instructors) {
-            $course->instructors()->attach($instructors->random(3)->pluck('id'));
+            $course->instructors()->attach($instructors->random(2)->pluck('id'));
         });
 
         $courses = Course::all();

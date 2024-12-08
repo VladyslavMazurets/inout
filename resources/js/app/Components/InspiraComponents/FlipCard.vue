@@ -24,15 +24,17 @@
       <div
         :class="
           cn(
-            'absolute h-full w-full rounded-2xl bg-black/80 p-4 text-slate-200 [backface-visibility:hidden]',
+            'border-state-200 absolute h-full rounded-2xl border bg-black/80 p-4 text-slate-200 [backface-visibility:hidden]',
             rotation[1]
           )
         "
       >
-        <div class="flex min-h-full flex-col gap-2">
-          <h1 class="text-xl font-bold text-white">{{ props.subtitle }}</h1>
+        <div class="line-clamp-5 flex min-h-full flex-col gap-2">
+          <h1 class="text-xl font-bold text-white">
+            {{ props.subtitle }}
+          </h1>
           <p
-            class="mt-1 border-t border-t-gray-200 py-4 text-base font-medium leading-normal text-gray-100"
+            class="mb-4 line-clamp-[7] border-t border-t-gray-200 pt-4 text-base font-medium text-gray-100"
           >
             {{ props.description }}
           </p>

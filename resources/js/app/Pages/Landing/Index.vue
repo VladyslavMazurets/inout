@@ -15,11 +15,12 @@
         }"
         class="relative flex w-full flex-col items-center gap-14"
       >
-        <HyperText
+        <!-- <HyperText
           text="Inout - your space"
           class="pointer-events-none whitespace-pre-wrap bg-gradient-to-b from-gray-400 to-white bg-clip-text text-center font-playfair text-7xl font-semibold leading-none text-transparent"
-          :duration="500"
-        />
+          :duration="900"
+        /> -->
+        <span>Inout - your space</span>
 
         <div class="flex items-center gap-6">
           <ShimmerButton
@@ -83,7 +84,7 @@
       </div>
     </div>
 
-    <div class="relative flex flex-col items-center gap-12 py-6">
+    <div class="relative flex flex-col items-center gap-16 py-6">
       <FlipWords
         :words="['Explore', 'Learn', 'Grow', 'Achieve', 'Discover', 'Succeed']"
         class="font-playfair text-5xl font-bold text-white"
@@ -115,14 +116,14 @@
       />
     </div>
 
-    <div class="flex flex-col items-center justify-center py-24">
+    <div class="flex flex-col items-center justify-center gap-16 py-24">
       <SparklesText
         :text="'Team Inout'"
         :sparkles-count="10"
         :class="'font-playfair text-6xl font-bold text-white'"
       />
 
-      <div class="flex flex-wrap items-center justify-center">
+      <div class="flex w-max flex-wrap items-center justify-center gap-12">
         <InstructorCard
           v-for="instructor in instructors"
           :instructor="instructor"

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Instructor;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class LandingController extends Controller
@@ -17,7 +16,7 @@ class LandingController extends Controller
             ->limit(5)
             ->get();
 
-        $instructors = Instructor::all();
+        $instructors = Instructor::with('media')->limit(5)->get();
 
         return Inertia::render('Landing/Index')->with(
             [
