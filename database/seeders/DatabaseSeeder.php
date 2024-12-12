@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             $post->authors()->attach($authors->random(2)->pluck('id'));
         });
 
-        Course::factory(10)->create()->each(function ($course) use ($instructors) {
+        Course::factory(18)->create()->each(function ($course) use ($instructors) {
             $course->instructors()->attach($instructors->random(2)->pluck('id'));
         });
 
