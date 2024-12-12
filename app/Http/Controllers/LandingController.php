@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Instructor;
+use App\Models\Testimonial;
 use Inertia\Inertia;
 
 class LandingController extends Controller
@@ -18,10 +19,13 @@ class LandingController extends Controller
 
         $instructors = Instructor::with('media')->limit(5)->get();
 
+        $testimonials = Testimonial::with('media')->orderBy('date', 'desc')->get();
+
         return Inertia::render('Landing/Index')->with(
             [
                 'courses' => $courses,
                 'instructors' => $instructors,
+                'testimonials' => $testimonials,
             ]
         );
     }

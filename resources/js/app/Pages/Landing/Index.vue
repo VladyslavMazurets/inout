@@ -105,15 +105,6 @@
           />
         </div>
       </div>
-
-      <ParticlesBg
-        class="absolute inset-0 z-10"
-        :quantity="1000"
-        :ease="100"
-        :color="'#FFF'"
-        :staticity="10"
-        refresh
-      />
     </div>
 
     <div class="flex flex-col items-center justify-center gap-16 py-24">
@@ -130,6 +121,47 @@
         />
       </div>
     </div>
+
+    <div class="flex flex-col items-center justify-center gap-16">
+      <h1 class="text-white">Testimonials</h1>
+
+      <div
+        class="relative flex h-[500px] w-full flex-col items-center justify-center overflow-hidden rounded-lg border bg-black md:shadow-xl"
+      >
+        <!-- First Marquee -->
+        <Marquee pause-on-hover class="[--duration:20s]">
+          <ReviewCard
+            v-for="testimonial in firstTestimonialPack"
+            :key="testimonial.id"
+            :img="testimonial.media[0]?.original_url"
+            :name="testimonial.name"
+            :username="testimonial.position"
+            :body="testimonial.content"
+          />
+        </Marquee>
+
+        <Marquee reverse pause-on-hover class="[--duration:20s]">
+          <ReviewCard
+            v-for="testimonial in secondTestimonialPack"
+            :key="testimonial.id"
+            :img="testimonial.media[0]?.original_url"
+            :name="testimonial.name"
+            :username="testimonial.position"
+            :body="testimonial.content"
+          />
+        </Marquee>
+
+        <!-- Left Gradient -->
+        <div
+          class="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-black"
+        ></div>
+
+        <!-- Right Gradient -->
+        <div
+          class="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-black"
+        ></div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -139,18 +171,21 @@
   import FlipWords from "@/app/Components/InspiraComponents/FlipWords.vue";
   import HyperText from "@/app/Components/InspiraComponents/HyperText.vue";
   import ImagesSlider from "@/app/Components/InspiraComponents/ImagesSlider.vue";
+  import Marquee from "@/app/Components/InspiraComponents/Marquee.vue";
   import ParticlesBg from "@/app/Components/InspiraComponents/ParticlesBg.vue";
+  import ReviewCard from "@/app/Components/InspiraComponents/ReviewCard.vue";
   import ShimmerButton from "@/app/Components/InspiraComponents/ShimmerButton.vue";
   import SparklesText from "@/app/Components/InspiraComponents/SparklesText.vue";
   import TextHighlight from "@/app/Components/InspiraComponents/TextHighlight.vue";
   import InstructorCard from "@/app/Components/InstructorCard.vue";
   import StatisticCard from "@/app/Components/StatisticCard.vue";
 
-  import { Course, Instructor } from "@/app/types";
+  import { Course, Instructor, Testimonial } from "@/app/types";
 
   interface Props {
     courses: Course[];
     instructors: Instructor[];
+    testimonials: Testimonial[];
   }
 
   const props = defineProps<Props>();
@@ -160,4 +195,7 @@
     "https://inout.com.ua/wp-content/uploads/2023/10/inout-19-scaled.jpg",
     "https://inout.com.ua/wp-content/uploads/2023/10/IMG_0860-scaled.jpg",
   ];
+
+  const firstTestimonialPack = props.testimonials.slice(0, 6);
+  const secondTestimonialPack = props.testimonials.slice(6, 12);
 </script>
