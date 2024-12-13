@@ -15,6 +15,7 @@ export type Course = {
   updated_at: string;
   deleted_at: string;
   media?: UploadedFile[];
+  data?: any;
 };
 
 export type Instructor = {

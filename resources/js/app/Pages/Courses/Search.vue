@@ -27,7 +27,7 @@
 
       <div class="grid grid-cols-3 gap-3">
         <CourseCard
-          v-for="course in searchedCourses"
+          v-for="course in searchedCourses.data"
           :key="course.id"
           :title="course.title"
           :description="course.description"
@@ -54,6 +54,7 @@
   }
 
   const props = defineProps<Props>();
+  console.log("🚀 ~ props:", props.searchedCourses);
 
   const search = ref("");
 

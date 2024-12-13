@@ -11,10 +11,14 @@
           v-model="search"
           placeholder="Search for a course"
           class="w-full"
-          @keydown.enter="handleSearch"
+          @keydown.enter="search.length > 0 ? handleSearch() : null"
         />
 
-        <button class="absolute right-3 top-2" @click.prevent="handleSearch">
+        <button
+          class="absolute right-3 top-2 disabled:cursor-not-allowed disabled:opacity-50"
+          :disabled="search.length <= 0"
+          @click.prevent="handleSearch"
+        >
           <MagnifyingGlassIcon class="h-6 w-6 text-white" />
         </button>
       </div>

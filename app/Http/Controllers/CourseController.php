@@ -22,7 +22,6 @@ class CourseController extends Controller
     public function search(Request $request)
     {
         $searchedCourses = Course::query()->with('media')->where('title', '~', $request->search)->simplePaginate(self::PER_PAGE);
-
         return Inertia::render('Courses/Search')->with([
             'searchedCourses' => $searchedCourses,
         ]);
