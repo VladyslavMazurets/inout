@@ -10,9 +10,16 @@ class CourseController extends Controller
 {
     const PER_PAGE = 9;
 
-    public function index()
+    public function index(Request $request)
     {
-        $courses = Course::query()->with('media')->orderBy('created_at', 'desc')->simplePaginate(self::PER_PAGE);
+        if($request->sorting === 'A-Z'){
+            $courses = Course::query()->with('media')->orderBy('title', 'asc')->simplePaginate(self::PER_PAGE);
+        } else if ($request->sorting === 'Z-A'){
+            $courses = Course::query()->with('media')->orderBy('title', 'desc')->simplePaginate(self::PER_PAGE);
+        } else {
+            $courses = Course::query()->with('media')->orderBy('created_at', 'desc')->simplePaginate(self::PER_PAGE);
+        }
+
 
         return Inertia::render('Courses/Index')->with([
             'courses' => $courses,
