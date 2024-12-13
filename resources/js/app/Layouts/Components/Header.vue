@@ -1,38 +1,26 @@
 <template>
-  <nav class="sticky top-0">
+  <nav class="sticky top-0 z-50">
     <div
       class="flex items-center justify-between bg-black px-10 py-3 text-white"
     >
-      <div class="flex h-[60px] w-[150px]">
+      <Link :href="route('landing')" class="flex h-[60px] w-[150px]">
         <img
           src="favicon.png"
           alt="Logo"
           width="100%"
           height="100%"
-          class="object-cover"
+          class="object-contain"
         />
-      </div>
+      </Link>
 
       <div class="flex w-2/6 items-center justify-around">
-        <NavLink
-          :href="route('courses')"
-          :icon="AcademicCapIcon"
-          :text="'Courses'"
-        />
+        <NavLink :href="route('courses')" :text="'Courses'" />
 
-        <NavLink :href="route('posts')" :icon="PencilIcon" :text="'Posts'" />
+        <NavLink :href="route('posts')" :text="'Posts'" />
 
-        <NavLink
-          :href="route('instructors')"
-          :icon="UserIcon"
-          :text="'Instructors'"
-        />
+        <NavLink :href="route('instructors')" :text="'Instructors'" />
 
-        <NavLink
-          :href="route('prices')"
-          :icon="BanknotesIcon"
-          :text="'Price'"
-        />
+        <NavLink :href="route('prices')" :text="'Price'" />
       </div>
 
       <div class="flex items-center text-white">
@@ -48,6 +36,7 @@
 <script setup lang="ts">
   import { AcademicCapIcon } from "@heroicons/vue/24/outline";
   import { BanknotesIcon, PencilIcon, UserIcon } from "@heroicons/vue/24/solid";
+  import { Link } from "@inertiajs/vue3";
 
   import NavLink from "@/app/Components/NavLink.vue";
 
