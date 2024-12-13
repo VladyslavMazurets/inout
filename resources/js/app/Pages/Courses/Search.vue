@@ -16,16 +16,12 @@
         <p class="text-2xl">Choose from our wide range of courses</p>
       </div>
 
-      <div class="w-2/5">
-        <IInput
-          v-model="search"
-          placeholder="Search for a course"
-          class="w-full"
-          @keydown.enter="handleSearch"
-        />
-      </div>
+      <SearchInput />
 
-      <div class="grid grid-cols-3 gap-3">
+      <div
+        v-if="searchedCourses?.data.length > 0"
+        class="grid grid-cols-3 gap-3"
+      >
         <CourseCard
           v-for="course in searchedCourses.data"
           :key="course.id"
@@ -34,6 +30,8 @@
           :imageUrl="course.media[0]?.original_url"
         />
       </div>
+
+      <NoDataFound v-else class="mt-12" />
     </div>
   </div>
 </template>
@@ -41,11 +39,11 @@
 <script lang="ts" setup>
   import { ArrowLeftIcon } from "@heroicons/vue/24/solid";
   import { router } from "@inertiajs/vue3";
-  import { ref } from "vue";
 
   import CourseCard from "@/app/Components/CourseCard.vue";
-  import IInput from "@/app/Components/InspiraComponents/IInput.vue";
   import ShimmerButton from "@/app/Components/InspiraComponents/ShimmerButton.vue";
+  import NoDataFound from "@/app/Components/NoDataFound.vue";
+  import SearchInput from "@/app/Components/SearchInput.vue";
 
   import { Course } from "@/app/types";
 
@@ -54,11 +52,4 @@
   }
 
   const props = defineProps<Props>();
-  console.log("🚀 ~ props:", props.searchedCourses);
-
-  const search = ref("");
-
-  const handleSearch = () => {
-    router.visit(route("courses.search", { search: search.value }));
-  };
 </script>

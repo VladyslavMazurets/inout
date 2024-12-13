@@ -6,22 +6,7 @@
         <p class="text-2xl">Choose from our wide range of courses</p>
       </div>
 
-      <div class="relative w-2/5">
-        <IInput
-          v-model="search"
-          placeholder="Search for a course"
-          class="w-full"
-          @keydown.enter="search.length > 0 ? handleSearch() : null"
-        />
-
-        <button
-          class="absolute right-3 top-2 disabled:cursor-not-allowed disabled:opacity-50"
-          :disabled="search.length <= 0"
-          @click.prevent="handleSearch"
-        >
-          <MagnifyingGlassIcon class="h-6 w-6 text-white" />
-        </button>
-      </div>
+      <SearchInput />
 
       <div class="flex flex-col items-center justify-center gap-10">
         <div class="grid grid-cols-3 gap-3">
@@ -48,14 +33,13 @@
 </template>
 
 <script lang="ts" setup>
-  import { MagnifyingGlassIcon } from "@heroicons/vue/24/solid";
-  import { router } from "@inertiajs/vue3";
   import axios from "axios";
   import { ref } from "vue";
 
   import CourseCard from "@/app/Components/CourseCard.vue";
   import IInput from "@/app/Components/InspiraComponents/IInput.vue";
   import ShimmerButton from "@/app/Components/InspiraComponents/ShimmerButton.vue";
+  import SearchInput from "@/app/Components/SearchInput.vue";
 
   import { Course } from "@/app/types";
 
@@ -65,13 +49,9 @@
 
   const props = defineProps<Props>();
 
-  const search = ref("");
   const actualCourses = ref([...props.courses.data]);
   const nextPage = ref(props.courses?.next_page_url.split("=")[1]);
 
-  const handleSearch = () => {
-    router.visit(route("courses.search", { search: search.value }));
-  };
   const handleLoadMore = () => {
     axios
       .get(route("courses.load-more"), {
