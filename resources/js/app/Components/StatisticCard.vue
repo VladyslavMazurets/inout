@@ -1,24 +1,11 @@
 <template>
-  <CardSpotlight
-    class="cursor-pointe select-none items-center justify-center whitespace-nowrap p-10 text-4xl shadow-2xl"
-    :slot-class="'flex flex-col items-center justify-center gap-4'"
-    :gradient-color="'#363636'"
-  >
-    <NumberTicker
-      :value="value"
-      :decimalPlaces="0"
-      :class="'text-5xl font-bold text-white'"
-    />
-    <span class="font-playfair text-2xl font-semibold">
-      {{ text }}
-    </span>
-  </CardSpotlight>
+  <div class="flex flex-col items-center justify-center gap-3 border-black p-8">
+    <span class="text-3xl font-bold">{{ value }}</span>
+    <span class="truncate text-2xl font-semibold">{{ text }}</span>
+  </div>
 </template>
 
 <script lang="ts" setup>
-  import CardSpotlight from "@/app/Components/InspiraComponents/CardSpotlight.vue";
-  import NumberTicker from "@/app/Components/InspiraComponents/NumberTicker.vue";
-
   interface Props {
     value: number;
     text: string;

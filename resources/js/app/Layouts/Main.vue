@@ -1,6 +1,6 @@
 <template>
   <Header />
-  <div id="main" class="bg-black px-12">
+  <div id="main" class="px-12">
     <slot />
   </div>
   <Footer />

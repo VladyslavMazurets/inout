@@ -1,47 +1,37 @@
 <template>
-  <nav class="sticky top-0 z-50">
+  <nav class="sticky top-0 z-50 w-full p-3">
     <div
-      class="flex items-center justify-between bg-black px-10 py-3 text-white"
+      class="mx-auto flex w-max items-center justify-between gap-20 rounded-full border bg-white px-10 py-4 text-black drop-shadow-xl"
     >
-      <Link :href="route('landing')" class="flex h-[60px] w-[150px]">
-        <img
-          src="favicon.png"
-          alt="Logo"
-          width="100%"
-          height="100%"
-          class="object-contain"
-        />
-      </Link>
+      <a
+        :href="route('landing')"
+        class="w-[150px] text-center text-xl font-bold"
+      >
+        Inout
+      </a>
 
-      <div class="flex w-2/6 items-center justify-around">
-        <NavLink :href="route('courses')" :text="'Courses'" />
+      <div class="flex items-center gap-4">
+        <NavLink :href="route('courses')" :text="'Контак'" />
 
-        <NavLink :href="route('posts')" :text="'Posts'" />
+        <NavLink :href="route('posts')" :text="'Пости'" />
 
-        <NavLink :href="route('instructors')" :text="'Instructors'" />
+        <NavLink :href="route('instructors')" :text="'Викладачі'" />
 
-        <NavLink :href="route('prices')" :text="'Price'" />
+        <NavLink :href="route('prices')" :text="'Ціни'" />
       </div>
 
-      <div class="flex items-center text-white">
-        <NavLink :href="'/'" :icon="InstagramIcon" />
-        <NavLink :href="'/'" :icon="YoutubeIcon" />
-        <NavLink :href="'/'" :icon="FacebookIcon" />
-        <NavLink :href="'/'" :icon="TiktokIcon" />
-      </div>
+      <RipleButton
+        aria-label="Menu"
+        class="text-sm font-medium text-black"
+        rippleColor="#FFCA28"
+      >
+        Контактуйте нас
+      </RipleButton>
     </div>
   </nav>
 </template>
 
 <script setup lang="ts">
-  import { AcademicCapIcon } from "@heroicons/vue/24/outline";
-  import { BanknotesIcon, PencilIcon, UserIcon } from "@heroicons/vue/24/solid";
-  import { Link } from "@inertiajs/vue3";
-
+  import RipleButton from "@/app/Components/InspiraComponents/RippleButton.vue";
   import NavLink from "@/app/Components/NavLink.vue";
-
-  import FacebookIcon from "@/icons/FacebookIcon.vue";
-  import InstagramIcon from "@/icons/InstagramIcon.vue";
-  import TiktokIcon from "@/icons/TiktokIcon.vue";
-  import YoutubeIcon from "@/icons/YoutubeIcon.vue";
 </script>
