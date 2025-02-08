@@ -13,7 +13,7 @@
         <img
           :src="props.image"
           alt="image"
-          class="size-full rounded-2xl object-cover shadow-2xl shadow-black/40"
+          class="size-full rounded-2xl object-cover shadow-xl shadow-black/40"
         />
         <div class="absolute bottom-4 left-4 text-xl font-bold text-white">
           {{ props.title }}

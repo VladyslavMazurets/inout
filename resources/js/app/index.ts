@@ -19,7 +19,6 @@ const appLang =
   !isServer && document.documentElement.lang
     ? document.documentElement.lang.replace("-", "_")
     : "sk";
-
 createInertiaApp({
   resolve: async (name) => {
     const pages = import.meta.glob("./Pages/**/*.vue");
