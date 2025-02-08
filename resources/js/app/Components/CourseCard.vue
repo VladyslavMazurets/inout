@@ -33,14 +33,14 @@
         </CardItem> -->
 
         <CardItem :translate-z="50" class="ml-auto mt-4">
-          <ShimmerButton
-            :href="href"
-            :shimmer-size="'0'"
-            class="flex w-max items-center gap-3 font-raleway"
+          <RippleButton
+            aria-label="Menu"
+            class="text-sm font-medium text-black"
+            rippleColor="#FFCA28"
           >
-            <span>Learn more</span>
+            <span>Lear More</span>
             <ArrowRightIcon class="h-4 w-4" />
-          </ShimmerButton>
+          </RippleButton>
         </CardItem>
       </div>
     </CardBody>
@@ -54,7 +54,7 @@
   import CardContainer from "@/app/Components/InspiraComponents/CardContainer.vue";
   import CardItem from "@/app/Components/InspiraComponents/CardItem.vue";
 
-  import ShimmerButton from "./InspiraComponents/ShimmerButton.vue";
+  import RippleButton from "./InspiraComponents/RippleButton.vue";
 
   interface Props {
     title: string;

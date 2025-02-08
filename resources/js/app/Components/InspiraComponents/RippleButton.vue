@@ -4,14 +4,14 @@
     :class="
       cn(
         'relative flex cursor-pointer items-center justify-center overflow-hidden',
-        'rounded-lg border-2 bg-background px-4 py-2 text-center text-primary',
+        'rounded-lg border border-black/30 bg-background px-4 py-2 text-center text-primary',
         $props.class
       )
     "
     :style="{ '--duration': $props.duration + 'ms' }"
     @click="handleClick"
   >
-    <div class="relative z-10 font-playfair">
+    <div class="relative z-10 flex items-center gap-2 font-playfair">
       <slot />
     </div>
 
