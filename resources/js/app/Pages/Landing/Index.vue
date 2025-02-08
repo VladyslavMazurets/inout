@@ -1,18 +1,15 @@
 <template>
   <HeroSection />
 
-  <section class="mt-20 flex flex-col items-center justify-center gap-8">
-    <h2 class="text-center font-raleway text-4xl font-bold">
-      Explore Our Courses
-    </h2>
+  <CoursesSection :courses="courses" />
 
-    <CoursesSection :courses="courses" />
-  </section>
+  <TeamSection :instructors="instructors" />
 </template>
 
 <script setup lang="ts">
   import CoursesSection from "@/app/Components/landing/CoursesSection.vue";
   import HeroSection from "@/app/Components/landing/HeroSection.vue";
+  import TeamSection from "@/app/Components/landing/TeamSection.vue";
 
   import { Course, Instructor, Testimonial } from "@/app/types";
 
