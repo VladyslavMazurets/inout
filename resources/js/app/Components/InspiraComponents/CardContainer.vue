@@ -1,6 +1,9 @@
 <template>
   <div
-    :class="['flex items-center justify-center p-2', containerClass]"
+    :class="[
+      'flex h-full w-full items-center justify-center p-2',
+      containerClass,
+    ]"
     style="perspective: 1000px"
   >
     <div

@@ -11,7 +11,7 @@
     :style="{ '--duration': $props.duration + 'ms' }"
     @click="handleClick"
   >
-    <div class="relative z-10">
+    <div class="relative z-10 font-playfair">
       <slot />
     </div>
 

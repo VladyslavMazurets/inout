@@ -2,6 +2,7 @@ import { setupInspiraUI } from "@inspira-ui/plugins";
 import animate from "tailwindcss-animate";
 
 export default {
+  mode: "jit",
   darkMode: "selector",
   safelist: ["dark"],
   prefix: "",

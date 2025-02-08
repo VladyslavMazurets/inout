@@ -14,7 +14,7 @@ class LandingController extends Controller
         $courses = Course::query()
             ->with(['instructors', 'media'])
             ->latest()
-            ->limit(5)
+            ->limit(4)
             ->get();
 
         $instructors = Instructor::with('media')->limit(5)->get();
