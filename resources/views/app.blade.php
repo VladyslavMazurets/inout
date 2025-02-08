@@ -22,8 +22,15 @@
     @inertiaHead
 </head>
 
-<body>
+<body class="old-paper-bg">
     @inertia
 </body>
 
 </html>
+
+<style scoped>
+    .old-paper-bg {
+ background-color: #ffffff;
+background-image: url("https://www.transparenttextures.com/patterns/snow.png");
+  }
+</style>

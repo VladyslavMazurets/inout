@@ -4,14 +4,16 @@
   >
     <div class="col-span-3 h-full items-center gap-5 border-r-2 border-black">
       <div class="p-16">
-        <h1 class="text-4xl font-bold text-black">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        </h1>
-        <span class="text-medium text-xl">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum magni
-          error rerum in odio, explicabo enim nostrum. Suscipit ratione ad
-          officia ducimus nulla laborum tenetur.
-        </span>
+        <div class="flex flex-col gap-9">
+          <h1 class="text-4xl font-bold text-black">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          </h1>
+          <span class="text-medium text-xl">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum magni
+            error rerum in odio, explicabo enim nostrum. Suscipit ratione ad
+            officia ducimus nulla laborum tenetur.
+          </span>
+        </div>
 
         <div class="mt-8 flex items-center gap-5">
           <RippleButton
