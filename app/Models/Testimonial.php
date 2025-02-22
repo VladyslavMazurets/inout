@@ -4,24 +4,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Brackets\CraftablePro\Media\ProcessMediaTrait;
 use Brackets\CraftablePro\Media\AutoProcessMediaTrait;
+use Brackets\CraftablePro\Media\HasMediaPreviewsTrait;
 use Brackets\CraftablePro\Media\InteractsWithMedia;
+use Brackets\CraftablePro\Media\ProcessMediaTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Brackets\CraftablePro\Media\HasMediaPreviewsTrait;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Testimonial extends Model  implements HasMedia
+class Testimonial extends Model implements HasMedia
 {
-    use HasFactory;
-    use ProcessMediaTrait;
     use AutoProcessMediaTrait;
-    use InteractsWithMedia;
+    use HasFactory;
     use HasMediaPreviewsTrait;
+    use InteractsWithMedia;
+    use ProcessMediaTrait;
 
     protected $table = 'testimonials';
+
     protected $fillable = ['name', 'position', 'rating', 'content', 'custom_link', 'date'];
 
     public function course()
@@ -31,14 +32,19 @@ class Testimonial extends Model  implements HasMedia
 
     public function registerMediaCollections(): void
     {
-        $this->addMediaCollection('customer_avatar');
+        $this->addMediaCollection('customer_avatar')->acceptsMimeTypes(['image/jpeg', 'image/png', 'image/gif'])->useFallbackUrl('fallback-avatar.jpeg')->useFallbackPath(public_path('fallback-avatar.jpeg'));
+
     }
 
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this->autoRegisterPreviews();
     }
 
+    public function getAvatarUrlAttribute(): string
+    {
+        return $this->getFirstMediaUrl('customer_avatar');
+    }
 
     protected $casts = [];
 }

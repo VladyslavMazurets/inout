@@ -17,7 +17,7 @@
           <Link href="/">
             <FlipCard
               :description="instructor.description"
-              :image="instructor.media?.[0]?.original_url ?? ''"
+              :image="instructor.profile_picture_url"
               rotate="y"
               :subtitle="instructor.position"
               :title="instructor.first_name + ' ' + instructor.last_name"
@@ -87,8 +87,7 @@
 <style scoped>
   swiper-container::part(button-prev),
   swiper-container::part(button-next) {
-    color: black !important;
-    opacity: 0.8;
+    color: #ffca28 !important;
   }
 
   swiper-container::part(button-prev).swiper-button-disabled,

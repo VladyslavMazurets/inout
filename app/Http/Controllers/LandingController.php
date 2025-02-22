@@ -17,9 +17,9 @@ class LandingController extends Controller
             ->limit(4)
             ->get();
 
-        $instructors = Instructor::with('media')->limit(5)->get();
+        $instructors = Instructor::with('media')->limit(8)->get()->append('profile_picture_url');
 
-        $testimonials = Testimonial::with('media')->orderBy('date', 'desc')->get();
+        $testimonials = Testimonial::with('media')->orderBy('date', 'desc')->get()->append('avatar_url');
 
         return Inertia::render('Landing/Index')->with(
             [
