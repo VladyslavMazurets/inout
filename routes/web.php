@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LandingController;
+use App\Http\Controllers\PriceController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -19,6 +20,4 @@ Route::get('/posts', function () {
     return Inertia::render('Posts/Index');
 })->name('posts');
 
-Route::get('/prices', function () {
-    return Inertia::render('Prices/Index');
-})->name('prices');
+Route::get('/prices', [PriceController::class, 'index'])->name('prices');

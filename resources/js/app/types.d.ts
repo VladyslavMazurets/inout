@@ -10,6 +10,7 @@ export type Course = {
   duration: number;
   instructors: Instructor[];
   testimonials: Testimonial[];
+  final_price: number;
   content: string;
   created_at: string;
   updated_at: string;

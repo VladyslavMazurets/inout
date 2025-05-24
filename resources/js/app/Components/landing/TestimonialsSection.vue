@@ -1,5 +1,5 @@
 <template>
-  <section class="mt-20 flex flex-col items-center justify-center gap-8">
+  <section class="-mx-12 mt-20 flex flex-col items-center justify-center gap-8">
     <h2 class="text-center font-raleway text-4xl font-bold">Testimonials</h2>
 
     <div class="w-full">
