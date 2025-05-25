@@ -1,5 +1,6 @@
 import { autoAnimatePlugin } from "@formkit/auto-animate/vue";
 import { createInertiaApp } from "@inertiajs/vue3";
+import { vElementVisibility } from "@vueuse/components";
 import { MotionPlugin } from "@vueuse/motion";
 import {
   i18nVue,
@@ -43,6 +44,7 @@ createInertiaApp({
           },
         })
         .use(MotionPlugin)
+        .directive("element-visibility", vElementVisibility)
         .mount(el);
     });
   },

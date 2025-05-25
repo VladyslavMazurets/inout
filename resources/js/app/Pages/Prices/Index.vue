@@ -51,7 +51,13 @@
       <div
         v-for="course in courses"
         :key="course.id"
-        class="flex w-full items-center justify-between border-b-2 px-12 py-5 first:pt-0 last:border-b-0 last:pb-0"
+        v-element-visibility="
+          (isVisible) => onVisibilityChange(course.id, isVisible)
+        "
+        :class="[
+          'course-item flex w-full items-center justify-between border-b-2 px-12 py-5 first:pt-0 last:border-b-0 last:pb-0',
+          { visible: visibleItems.includes(course.id) },
+        ]"
       >
         <Link
           :href="`/courses/${course.slug}`"
@@ -104,6 +110,13 @@
   const props = defineProps<Props>();
   const isNextPage = ref(true);
   const courses = ref<Course[]>(props.allCourses.data);
+  const visibleItems = ref<number[]>([]);
+
+  function onVisibilityChange(id: number, isVisible: boolean) {
+    if (isVisible && !visibleItems.value.includes(id)) {
+      visibleItems.value.push(id);
+    }
+  }
 
   const handleLoadMore = () => {
     router.get(
@@ -125,3 +138,19 @@
     );
   };
 </script>
+
+<style scoped>
+  /* Анімація появи курсу */
+  .course-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 2s ease-out,
+      transform 2s ease-out;
+  }
+
+  .course-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
