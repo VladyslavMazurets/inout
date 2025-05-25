@@ -1,5 +1,7 @@
 <template>
-  <footer class="flex h-[300px] w-full items-center justify-between px-12">
+  <footer
+    class="flex h-[300px] w-full items-center justify-between border-t-2 px-12"
+  >
     <div class="flex h-[80px] w-[240px]">
       <span class="font-raleway text-3xl font-bold">Inout</span>
     </div>
