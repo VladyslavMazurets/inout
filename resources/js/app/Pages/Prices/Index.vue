@@ -47,12 +47,17 @@
       </div>
     </div>
 
-    <div class="my-12 flex w-full flex-col rounded-xl border-2 py-8">
+    <div
+      :class="[
+        'mt-16 flex w-full flex-col rounded-xl border-2 py-8',
+        { 'mb-16': !isNextPage },
+      ]"
+    >
       <div
         v-for="course in courses"
         :key="course.id"
         v-element-visibility="
-          (isVisible) => onVisibilityChange(course.id, isVisible)
+          (isVisible: boolean) => onVisibilityChange(course.id, isVisible)
         "
         :class="[
           'course-item flex w-full items-center justify-between border-b-2 px-12 py-5 first:pt-0 last:border-b-0 last:pb-0',
@@ -88,9 +93,14 @@
       </div>
     </div>
 
-    <Link v-if="isNextPage" href="#" @click.prevent="handleLoadMore">
+    <RippleButton
+      v-if="isNextPage"
+      href="#"
+      @click.prevent="handleLoadMore"
+      class="mb-20 bg-transparent px-8 text-black"
+    >
       Load More
-    </Link>
+    </RippleButton>
   </div>
 </template>
 
@@ -98,6 +108,7 @@
   import { Link, router } from "@inertiajs/vue3";
   import { ref } from "vue";
 
+  import RippleButton from "@/app/Components/InspiraComponents/RippleButton.vue";
   import Wysiwyg from "@/app/Components/Wysiwyg.vue";
 
   import { Course } from "@/app/types";
@@ -140,13 +151,12 @@
 </script>
 
 <style scoped>
-  /* Анімація появи курсу */
   .course-item {
     opacity: 0;
     transform: translateY(20px);
     transition:
-      opacity 2s ease-out,
-      transform 2s ease-out;
+      opacity 1.5s ease-out,
+      transform 1.5s ease-out;
   }
 
   .course-item.visible {
